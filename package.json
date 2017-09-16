@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Milad/bunyan-es.git"
+    "url": "git+https://github.com/Milad/bunyan-elasticsearch-bulk.git"
   },
   "author": {
     "name": "Milad Kawas Cale",
@@ -21,9 +21,9 @@
   },
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Milad/bunyan-es/issues"
+    "url": "https://github.com/Milad/bunyan-elasticsearch-bulk/issues"
   },
-  "homepage": "https://github.com/Milad/bunyan-es#readme",
+  "homepage": "https://github.com/Milad/bunyan-elasticsearch-bulk#readme",
   "dependencies": {
     "elasticsearch": "^13.3.1",
     "moment": "^2.18.1"
