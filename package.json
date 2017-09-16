@@ -1,0 +1,55 @@
+{
+  "name": "bunyan-elasticsearch-bulk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/bunyan-elasticsearch.js",
+  "scripts": {
+    "depcheck": "depcheck",
+    "eslint": "eslint -c .eslintrc.js **/*.js *.js",
+    "eslint:fix": "eslint --color -c .eslintrc.js **/*.js *.js --fix",
+    "start": "node server.js",
+    "start:watch": "nodemon server.js --delay 1 --ext html,js,json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Milad/bunyan-es.git"
+  },
+  "author": {
+    "name": "Milad Kawas Cale",
+    "email": "miladkaleh@gmail.com"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Milad/bunyan-es/issues"
+  },
+  "homepage": "https://github.com/Milad/bunyan-es#readme",
+  "dependencies": {
+    "elasticsearch": "^13.3.1",
+    "moment": "^2.18.1"
+  },
+  "devDependencies": {
+    "bunyan": "^1.8.12",
+    "depcheck": "^0.6.7",
+    "dotenv": "^4.0.0",
+    "eslint": "^4.6.1",
+    "eslint-config-milad": "^1.0.8",
+    "nodemon": "^1.12.0"
+  },
+  "engines": {
+    "node": "*"
+  },
+  "contributors": [
+    {
+      "name": "Milad Kawas Cale",
+      "email": "miladkaleh@gmail.com"
+    }
+  ],
+  "keywords": [
+    "bulk",
+    "bunyan",
+    "elasticsearch",
+    "Syria",
+    "Syrian Refugees"
+  ]
+}
