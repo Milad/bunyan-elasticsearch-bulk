@@ -41,7 +41,7 @@ log.info('Log this message!');
     // Default: [logstash-]YYYY[-]MM[-]DD
     indexPattern: '[logstash-]YYYY[-]MM[-]DD',
     
-    // Type of your logs
+    // Optional: Type of your logs
     // Default: logs
     type: 'logs',
     
