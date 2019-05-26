@@ -28,6 +28,7 @@ log.info({message: 'Log this message!'});
 
 ## List of Configuration Parameters
 - Parameters Specific to ElasticSearch Client, and will be passed to the client without any change:
+https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/client-configuration.html
     - `host`
         - Full URL of ES server with the port.
         - Required
