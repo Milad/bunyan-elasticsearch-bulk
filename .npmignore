@@ -1,4 +1,5 @@
+# IDE Settings
 /.idea/
+
+# 3rd-Party Dependencies
 /node_modules/
-/.env
-/package-lock.json
