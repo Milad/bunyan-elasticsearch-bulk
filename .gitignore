@@ -1,4 +1,9 @@
+# IDE Settings
 /.idea/
+
+# 3rd-Party Dependencies
 /node_modules/
-/package-lock.json
+
+# Dev Configurations
 /.env
+/.env.example

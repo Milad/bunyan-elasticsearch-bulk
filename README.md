@@ -56,7 +56,7 @@ log.info('Log this message!');
 ```
 
 ## Author(s)
-- Milad Kawas Cale: A Syrian refugee in Sweden.
+- Milad Kawas Cale
 
 ## License
 MIT
