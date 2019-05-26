@@ -1,5 +1,4 @@
 # bunyan-elasticsearch-bulk
-#### By a Syrian Refugee
 A Bunyan stream for saving logs into Elasticsearch. Based on [bunyan-elasticsearch](https://github.com/simianhacker/bunyan-elasticsearch) and [bulk-insert](https://github.com/jonathanong/bulk-insert), this package saves logs in bulk instead of log-by-log method, the goal is to save resources on both your application and Elastic Search server (ex: lowering costs in AWS).
 
 ## Installation
@@ -8,13 +7,13 @@ A Bunyan stream for saving logs into Elasticsearch. Based on [bunyan-elasticsear
 ## Usage with Node
 ```js
 const bunyan = require('bunyan');
-const BunyanElasticSearch = require('bunyan-elasticsearch-bulk');
+const createESStream = require('bunyan-elasticsearch-bulk');
 
 const config = {
     name: "Application Name",
     streams: [{
         level: 'debug',
-        stream: new BunyanElasticSearch({
+        stream: createESStream({
             indexPattern: '[logstash-]YYYY.MM.DD',
             type: 'logs',
             host: 'http://localhost:9200'
@@ -24,39 +23,56 @@ const config = {
 
 const log = bunyan.createLogger(config);
 
-log.info('Log this message!');
+log.info({message: 'Log this message!'});
 ```
 
-## Params
+## List of Configuration Parameters
+- Parameters Specific to ElasticSearch Client, and will be passed to the client without any change:
+    - `host`
+        - Full URL of ES server with the port.
+        - Required
+        - For https, don't use port 443.
+        - Example: `http://localhost:9200`
+    - hosts
+    - log
+    - plugins
+    - sniffEndpoint
+- Parameters Specific to this Module
+    - `indexPattern`
+        - Pattern for the daily segmentation of log indices.
+        - Optional
+        - Default: `[logstash-]YYYY[-]MM[-]DD`
+    - `type`
+        - Type of your logs
+        - Optional
+        - Default: `logs`
+    - `limit`
+        - How many logs to save before submitting them to ES
+        - Optional
+        - Default: `100`
+    - `interval`
+        - Time in milliseconds before writing logs even if their count has not reached the `limit`.
+        - Optional
+        - Default: `5000`
+    - `client`
+        - Optional
+        - Default: `elasticsearch.Client(options)` will be used.
 ```js
 {
     // Required: Full URL of ES server with the port.
     // For https, don't use port 443.
     host: 'http://localhost:9200',
-    
-    // Optional: elasticsearch.CLient() is the default.
-    client: new elasticsearch.Client(options),
-    
-    // Optional: Pattern for the daily segmentation of log indexes.
-    // Default: [logstash-]YYYY[-]MM[-]DD
-    indexPattern: '[logstash-]YYYY[-]MM[-]DD',
-    
-    // Optional: Type of your logs
-    // Default: logs
-    type: 'logs',
-    
-    // Optional: How many logs to save before writing them
-    // Default: 50
-    limit: 50,
-    
-    // Optionsl: Time before writing logs even if their count doesn't exceed the limit.
-    // Default: 5000 milliseconds
-    interval: 5000
 }
 ```
 
+## Changes since 1.0.x
+- For you as a client, you no longer need to use the keyword `new` with this module. There is a factory function now. Example above is updated.
+
+## Development
+- A docker-compose.yaml file has been added to make it easier to develop and test locally.
+
 ## Author(s)
-- Milad Kawas Cale: A Syrian refugee in Sweden.
+- Milad Kawas Cale
 
 ## License
 MIT

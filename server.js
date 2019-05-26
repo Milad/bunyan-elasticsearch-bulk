@@ -1,24 +1,28 @@
-const bunyan = require('bunyan');
-const BunyanElasticSearch = require('./lib/bunyan-elasticsearch');
-const dotEnv = require('dotenv');
-const e = dotEnv.config(__dirname).parsed;
+const bunyan = require('bunyan')
+const createESStream = require('./lib')
+
+const eSStream = createESStream({
+  indexPattern: '[logstash-]YYYY[-]MM[-]DD',
+  type: 'logs',
+  host: 'http://127.0.0.1:9200'
+})
 
 const config = {
-    name: e.APP_NAME,
-    streams: [{
-        level: 'debug',
-        stream: new BunyanElasticSearch({
-            indexPattern: '[logstash-]YYYY[-]MM[-]DD',
-            type: 'logs',
-            host: e.ELASTICSEARCH_HOST
-        })
-    }],
-    serializers: bunyan.stdSerializers,
-    src: false
-};
+  name: 'My Dev App',
+  streams: [{
+    level: 'debug',
+    stream: eSStream
+  }],
+  serializers: bunyan.stdSerializers,
+  src: false
+}
 
-const log = bunyan.createLogger(config);
+const log = bunyan.createLogger(config)
 
 setInterval(() => {
-    log.error('Hi');
-}, 9);
+  log.error({
+    message: 'Hi',
+    test: true,
+    myName: 'Milad'
+  })
+}, 100)

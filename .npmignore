@@ -3,3 +3,8 @@
 
 # 3rd-Party Dependencies
 /node_modules/
+
+# Things not needed in the final production product
+/.gitignore
+/docker-compose.yaml
+/server.js
