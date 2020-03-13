@@ -1,24 +1,33 @@
-const bunyan = require('bunyan');
-const BunyanElasticSearch = require('./lib/bunyan-elasticsearch');
-const dotEnv = require('dotenv');
-const e = dotEnv.config(__dirname).parsed;
+const bunyan = require('bunyan')
+const createESStream = require('./lib')
+
+const eSStream = createESStream({
+  node: 'http://localhost:9200'
+})
+
+// The following console logs are meant for development and debugging.
+eSStream.on('error', console.warn)
+
+eSStream.on('log_submitted', why => {
+  console.log('log_submitted', why)
+})
+
+eSStream.on('log_received', () => {
+  console.log('log_received')
+})
 
 const config = {
-    name: e.APP_NAME,
-    streams: [{
-        level: 'debug',
-        stream: new BunyanElasticSearch({
-            indexPattern: '[logstash-]YYYY[-]MM[-]DD',
-            type: 'logs',
-            host: e.ELASTICSEARCH_HOST
-        })
-    }],
-    serializers: bunyan.stdSerializers,
-    src: false
-};
+  name: 'My Dev App',
+  streams: [{
+    level: 'debug',
+    stream: eSStream
+  }],
+  serializers: bunyan.stdSerializers,
+  src: false
+}
 
-const log = bunyan.createLogger(config);
+const log = bunyan.createLogger(config)
 
 setInterval(() => {
-    log.error('Hi');
-}, 9);
+  log.info({ test: true }, 'test')
+}, 100)
