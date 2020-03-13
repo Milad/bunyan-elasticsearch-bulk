@@ -6,7 +6,9 @@
   "scripts": {
     "depcheck": "depcheck",
     "lint": "standard",
-    "lint:fix": "standard --fix",
+    "lint:fix": "npm run lint -- --fix",
+    "lint:md": "standard --plugin=markdown README.md",
+    "lint:md:fix": "npm run lint:md -- --fix",
     "start": "node server.js",
     "start:watch": "nodemon server.js --delay 1 --ext html,js,json",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -25,14 +27,16 @@
   },
   "homepage": "https://github.com/Milad/bunyan-elasticsearch-bulk#readme",
   "dependencies": {
+    "@elastic/elasticsearch": "^7.6.0",
     "bunyan": "^1.8.12",
-    "elasticsearch": "^16.0.0",
-    "moment": "^2.18.1"
+    "moment": "^2.18.1",
+    "semver": "^7.1.3"
   },
   "devDependencies": {
-    "depcheck": "^0.8.0",
-    "nodemon": "^1.12.1",
-    "standard": "^12.0.1"
+    "depcheck": "^0.9.2",
+    "eslint-plugin-markdown": "^1.0.2",
+    "nodemon": "^2.0.2",
+    "standard": "^14.3.1"
   },
   "engines": {
     "node": "*"
@@ -47,6 +51,9 @@
     "bulk",
     "bunyan",
     "elasticsearch",
-    "kibana"
+    "kibana",
+    "logging",
+    "logs",
+    "asynchronous"
   ]
 }

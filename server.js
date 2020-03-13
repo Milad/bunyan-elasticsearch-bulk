@@ -2,9 +2,18 @@ const bunyan = require('bunyan')
 const createESStream = require('./lib')
 
 const eSStream = createESStream({
-  indexPattern: '[logstash-]YYYY[-]MM[-]DD',
-  type: 'logs',
-  host: 'http://127.0.0.1:9200'
+  node: 'http://localhost:9200'
+})
+
+// The following console logs are meant for development and debugging.
+eSStream.on('error', console.warn)
+
+eSStream.on('log_submitted', why => {
+  console.log('log_submitted', why)
+})
+
+eSStream.on('log_received', () => {
+  console.log('log_received')
 })
 
 const config = {
@@ -20,9 +29,5 @@ const config = {
 const log = bunyan.createLogger(config)
 
 setInterval(() => {
-  log.error({
-    message: 'Hi',
-    test: true,
-    myName: 'Milad'
-  })
+  log.info({ test: true }, 'test')
 }, 100)
