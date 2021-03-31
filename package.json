@@ -7,7 +7,7 @@
     "depcheck": "depcheck --ignores=eslint-plugin-markdown",
     "lint": "standard",
     "lint:fix": "npm run lint -- --fix",
-    "lint:md": "standard --plugin=markdown README.md",
+    "lint:md": "standard-markdown README.md",
     "lint:md:fix": "npm run lint:md -- --fix",
     "start": "node server.js",
     "start:watch": "nodemon server.js --delay 1 --ext html,js,json",
@@ -34,9 +34,9 @@
   },
   "devDependencies": {
     "depcheck": "^1.2.0",
-    "eslint-plugin-markdown": "^1.0.2",
     "nodemon": "^2.0.4",
-    "standard": "^16.0.3"
+    "standard": "^16.0.3",
+    "standard-markdown": "^6.0.0"
   },
   "engines": {
     "node": "*"
