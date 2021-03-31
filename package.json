@@ -36,7 +36,7 @@
     "depcheck": "^1.2.0",
     "eslint-plugin-markdown": "^1.0.2",
     "nodemon": "^2.0.4",
-    "standard": "^14.3.4"
+    "standard": "^16.0.3"
   },
   "engines": {
     "node": "*"
