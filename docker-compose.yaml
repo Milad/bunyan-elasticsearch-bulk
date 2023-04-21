@@ -2,13 +2,14 @@ version: '3'
 
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.6.1
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.7.0
     environment:
       - node.name=es01
       - discovery.type=single-node
       - discovery.seed_hosts=es02
       - cluster.name=docker-cluster
       - bootstrap.memory_lock=true
+      - xpack.security.enabled=false
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     ulimits:
       memlock:
@@ -17,6 +18,6 @@ services:
     ports:
       - "9200:9200"
   kibana:
-    image: docker.elastic.co/kibana/kibana:7.6.1
+    image: docker.elastic.co/kibana/kibana:8.7.0
     ports:
       - "5601:5601"
